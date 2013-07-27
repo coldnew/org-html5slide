@@ -1,10 +1,10 @@
 EMACS ?= emacs
 BATCH := $(EMACS) $(EFLAGS) -batch -q -no-site-file -L .
 
-#all: org-html5slide.elc
+#all: ox-html5slide.elc
 
 README.md: make-readme-markdown.el
-	emacs --script $< <org-html5slide.el>$@ 2>/dev/null
+	emacs --script $< <ox-html5slide.el>$@ 2>/dev/null
 make-readme-markdown.el:
 	wget -q -O $@ https://raw.github.com/mgalgs/make-readme-markdown/master/make-readme-markdown.el
 .INTERMEDIATE: make-readme-markdown.el
