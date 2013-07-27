@@ -148,12 +148,12 @@ holding contextual information."
              (hlevel (org-html5presentation-get-hlevel info))
              (first-content (car (org-element-contents headline))))
         (concat
-	 ;; Stop previous slide.
+         ;; Stop previous slide.
          (if (or (/= level 1)
                  (not (org-export-first-sibling-p headline info)))
              "</article>\n")
-	 ;; Add an extra "<article>" to group following slides
-	 ;; into vertical ones.
+         ;; Add an extra "<article>" to group following slides
+         ;; into vertical ones.
          (if (eq level hlevel)
              "<article class='smaller nobackground'>\n")
          ;; Start a new slide.
@@ -224,9 +224,26 @@ info is a plist holding eport options."
 ;;; End-user functions
 
 ;;;###autoload
+(defun org-html5slide-export-as-html
+  (&optional async subtreep visible-only body-only ext-plist)
+  "Export current buffer to an HTML buffer.
+
+Export is done in a buffer named \"*Org HTML5 Slide Export*\", which
+will be displayed when `org-export-show-temporary-export-buffer'
+is non-nil."
+  (interactive)
+  (let ((outbuf (org-export-to-buffer
+                 'html5slide "*Org HTML5 Slide Export*"
+                 subtreep visible-only body-only ext-plist)))
+    ;; Set major mode.
+    (with-current-buffer outbuf (set-auto-mode t))
+    (when org-export-show-temporary-export-buffer
+      (switch-to-buffer-other-window outbuf))))
+
+;;;###autoload
 (defun org-html5slide-export-to-html
   (&optional async subtreep visible-only body-only ext-plist)
-  "Export current buffer to a html5 slide HTML file."
+  "Export current buffer to a HTML5 slide HTML file."
   (interactive)
   (let* ((extension (concat "." org-html-extension))
          (file (org-export-output-file-name extension subtreep))
