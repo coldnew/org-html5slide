@@ -1,7 +1,10 @@
+<a href="http://github.com/coldnew/org-html5slide"><img src="https://www.gnu.org/software/emacs/images/emacs.png" alt="Emacs Logo" width="80" height="80" align="right"></a>
 ## ox-html5slide.el
 *Export org-mode to HTML5 slide.*
 
 ---
+[![License GPLv2](https://img.shields.io/badge/license-GPL_v2-green.svg)](http://www.gnu.org/licenses/gpl-2.0.html)
+[![MELPA](http://melpa.org/packages/ox-html5slide-badge.svg)](http://melpa.org/#/ox-html5slide)
 
 ox-html5slide.el is a rewrite version of org-html5presentation.el
 and only support org-mode 8.0 or above.
@@ -18,8 +21,22 @@ In your .emacs
 
      (require 'ox-html5slide)
 
-### Function Documentation
 
+
+### Customization Documentation
+
+#### `org-html5slide-hlevel`
+
+The minimum level of headings that should be grouped into
+vertical slides.
+
+#### `org-html5slide-title-slide-template`
+
+Format template to specify title page slide.
+See `org-html-postamble-format` for the valid elements which
+can be include.
+
+### Function and Macro Documentation
 
 #### `(org-html5presentation-get-hlevel INFO)`
 
@@ -55,7 +72,16 @@ Return complete document string after HTML conversion.
 contents is the transoded contents string.
 info is a plist holding eport options.
 
-<!-- Error: (void-function &optional) -->
+#### `(org-html5slide-export-as-html &optional ASYNC SUBTREEP VISIBLE-ONLYBODY-ONLY EXT-PLIST)`
+
+Export current buffer to an HTML buffer.
+Export is done in a buffer named "*Org HTML5 Slide Export*", which
+will be displayed when `org-export-show-temporary-export-buffer`
+is non-nil.
+
+#### `(org-html5slide-export-to-html &optional ASYNC SUBTREEP VISIBLE-ONLYBODY-ONLY EXT-PLIST)`
+
+Export current buffer to a HTML5 slide HTML file.
 
 -----
 <div style="padding-top:15px;color: #d0d0d0;">
